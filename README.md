@@ -46,7 +46,8 @@ tags:
 
 [body]
 
-Textile content goes in the [body] section. "linkage":https://github.com/tstriker/gridsome-transformer-textile/ and so on.
+Textile content goes in the [body] section. 
+"linkage":https://github.com/tstriker/gridsome-transformer-textile/ and so on.
 
 - list
 - and
