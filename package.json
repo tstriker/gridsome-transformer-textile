@@ -1,6 +1,6 @@
 {
   "name": "gridsome-transformer-textile",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Gridsome transformer for textile files",
   "main": "index.js",
   "scripts": {
