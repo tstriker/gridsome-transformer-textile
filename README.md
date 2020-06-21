@@ -57,7 +57,7 @@ Textile content goes in the [body] section.
 
 ```
 
-h1. Gridsome template 
+# Gridsome template 
 
 To keep things simple, the transformer returns just the props, with body section added as `.body` property.
 Here's how you query for it in the gridsome template:
