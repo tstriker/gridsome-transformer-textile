@@ -34,6 +34,7 @@ the transformer expects the file to consist of two parts.
 1. `[props]` part is authored in [YAML](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 1. The `[body]` section should contain your actual content in [textile](https://textile-lang.com/)
 
+
 Here's what it looks like:
 
 ```
@@ -54,4 +55,29 @@ Textile content goes in the [body] section.
 - so
 - on
 
+```
+
+h1. Gridsome template 
+
+To keep things simple, the transformer returns just the props, with body section added as `.body` property.
+Here's how you query for it in the gridsome template:
+
+```
+<template>
+    <div class="page">
+        I'm a post, short and stout.
+
+        <div v-html="$page.blogPost.body" />
+    </div>
+</template>
+
+
+<page-query>
+query ($id: ID!) {
+  blogPost(id: $id) {
+    slug
+    body
+  }
+}
+</page-query>
 ```
