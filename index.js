@@ -8,29 +8,33 @@ class TextileTransformer {
 
     parse(source) {
         /*
-            The basic structure we expect is
+            We expect frontmatter specifying metas in YAML, followed by the actual page content.
+            So it should look something like this:
 
-            [props]
+            ---
             a: some
             b: props
             c:
                 - in yaml
                 - format
+            ---
 
-            [body]
-            Anything after the first [body] we meet is textile in *all* its beauty, freeform, anything after
+            h1. Hello world
+
+            Anything after the second set of triple-dashes is _textile_.
         */
 
-        let re = /\[props\](?<props>(.|\n)*?)\[body\](?<body>(.|\n)*)/gm;
+        let re = /^(---)(?<props>(.|\n)*?)(---)(?<body>(.|\n)*)/gm;
         let res = re.exec(source);
-
-        let props = (res.groups.props || "")
-        props = props.trim() ? jsYaml.load(props) : {};
-
-        let body = textile.parse((res.groups.body || "").trim());
+        let props = {};
+        let body = source;
+        if (res) {
+            props = (res.groups.props || "")
+            props = props.trim() ? jsYaml.load(props) : {};
+            body = textile.parse((res.groups.body || "").trim());
+        }
 
         props.body = body;
-
         return props;
     }
 }

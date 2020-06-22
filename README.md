@@ -2,11 +2,11 @@ A simple textile transformer for gridsome with a bit of magic to make things sim
 
 # Installation & configuration
 
-In your gridsome repo: 
+In your gridsome repo:
 
 ```npm install gridsome-transformer-textile```
 
-I imagine it's quite likely you'll use the transformer in combination with the `source-filesystem` plugin, so 
+I imagine it's quite likely you'll use the transformer in combination with the `source-filesystem` plugin, so
 here's config for that
 
 ```
@@ -28,26 +28,19 @@ here's config for that
 
 # The .textile files
 
-Your textile files should have `.textile` extension. To be able to have metadata and the textile content in the same file, 
-the transformer expects the file to consist of two parts. 
-
-1. `[props]` part is authored in [YAML](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
-1. The `[body]` section should contain your actual content in [textile](https://textile-lang.com/)
-
+Your textile files should have `.textile` extension. Use frontmatter syntax to specify metadata in YAML format.
 
 Here's what it looks like:
 
 ```
-[props]
-
+---
 title: Title of the page etc
 tags:
   - one tag
   - two tag
+---
 
-[body]
-
-Textile content goes in the [body] section. 
+Textile content goes in the [body] section.
 "linkage":https://github.com/tstriker/gridsome-transformer-textile/ and so on.
 
 - list
@@ -57,9 +50,10 @@ Textile content goes in the [body] section.
 
 ```
 
-# Gridsome template 
+# Gridsome template
 
-To keep things simple, the transformer returns just the props, with body section added as `.body` property.
+The transformer will return an object that will have all the properties you have defined in the frontmatter section,
+plus the content will added as `.body` property.
 Here's how you query for it in the gridsome template:
 
 ```
