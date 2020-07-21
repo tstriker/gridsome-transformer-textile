@@ -25,4 +25,7 @@
     "type": "git",
     "url": "git+https://github.com/tstriker/gridsome-transformer-textile.git"
   }
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
